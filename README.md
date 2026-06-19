@@ -87,9 +87,9 @@ PostgreSQL is used to store:
 * Analysis Results
 * 
 ## 📌 Swagger API Documentation
+The project APIs are tested using Swagger UI.
 
-Below is the Swagger UI of the project:
-![Swagger Screenshot]
+### 🔹 Swagger Screenshots
 
 ![Swagger 1](swagger1.png)
 
