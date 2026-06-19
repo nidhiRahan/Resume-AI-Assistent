@@ -19,8 +19,7 @@ public class PdfReportService {
 
     public byte[] generateReport(Long analysisId)
             throws Exception {
-        System.out.println("PDF SERVICE HIT");
-        System.out.println("Analysis Id = " + analysisId);
+
         AnalysisResult result =
                 analysisResultRepository.findById(analysisId)
                         .orElseThrow(() ->

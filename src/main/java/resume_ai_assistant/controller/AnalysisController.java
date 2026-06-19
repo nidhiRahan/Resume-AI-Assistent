@@ -50,9 +50,5 @@ public class AnalysisController {
                 .body(pdf);
     }
 
-    @GetMapping("/hello")
-    public String hello() {
-        System.out.println("HELLO API HIT");
-        return "HELLO";
-    }
+
 }

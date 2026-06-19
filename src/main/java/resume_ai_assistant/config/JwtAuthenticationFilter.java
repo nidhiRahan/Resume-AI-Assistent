@@ -33,7 +33,6 @@ public class JwtAuthenticationFilter
         String authHeader =
                 request.getHeader("Authorization");
 
-        System.out.println("Authorization Header = " + authHeader);
         if(authHeader == null ||
                 !authHeader.startsWith("Bearer ")) {
 
@@ -48,7 +47,6 @@ public class JwtAuthenticationFilter
 
             String email =
                     jwtService.extractEmail(token);
-            System.out.println("Email = " + email);
             UsernamePasswordAuthenticationToken auth =
                     new UsernamePasswordAuthenticationToken(
                             email,
@@ -68,6 +66,4 @@ public class JwtAuthenticationFilter
 
         filterChain.doFilter(request,response);
     }
-
-
 }
