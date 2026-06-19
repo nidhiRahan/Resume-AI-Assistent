@@ -85,6 +85,12 @@ PostgreSQL is used to store:
 * Users
 * Resumes
 * Analysis Results
+* 
+## 📌 Swagger API Documentation
+
+Below is the Swagger UI of the project:
+
+![Swagger Screenshot](swagger.png)
 
 ## Future Enhancements
 
