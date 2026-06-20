@@ -144,14 +144,12 @@ The application stores:
 
 Add screenshots here:
 
-(swagger1.png)
-
-(swagger2.png)
-
-(swagger3.png)
-
-(swagger4.png)
-
+![Swagger 1](swagger1.png) 
+![Swagger 2](swagger2.png)
+![Swagger 3](swagger3.png) 
+![Swagger 4](swagger4.png) 
+![Swagger 5](swagger5.png)
+![Swagger 6](swagger6.png)
 
 ---
 
