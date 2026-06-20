@@ -145,13 +145,13 @@ The application stores:
 Add screenshots here:
 
 ```md
-![Swagger Home](screenshots/swagger-home.png)
+![Swagger Home](screenshots/swagger1.png)
 
-![Authentication APIs](screenshots/auth-api.png)
+![Authentication APIs](screenshots/swagger2.png)
 
-![Resume Upload API](screenshots/upload-api.png)
+![Resume Upload API](screenshots/swagger3.png)
 
-![Analysis API](screenshots/analysis-api.png)
+![Analysis API](screenshotsswagger4.png)
 ```
 
 ---
