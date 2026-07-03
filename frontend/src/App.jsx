@@ -1,12 +1,42 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
 import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
+function App() {
 
-import "bootstrap/dist/css/bootstrap.min.css";
+    return (
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+        <BrowserRouter>
+
+            <Routes>
+
+                <Route
+                    path="/"
+                    element={<Navigate to="/login" />}
+                />
+
+                <Route
+                    path="/login"
+                    element={<Login />}
+                />
+
+                <Route
+                    path="/register"
+                    element={<Register />}
+                />
+
+                <Route
+                    path="/dashboard"
+                    element={<Dashboard />}
+                />
+
+            </Routes>
+
+        </BrowserRouter>
+
+    );
+
+}
+
+export default App;

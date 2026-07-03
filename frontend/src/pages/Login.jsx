@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Login() {
 
@@ -80,12 +81,12 @@ function Login() {
 
                     Don't have an account?
 
-                    <a
-                        href="/register"
+                    <Link
+                        to="/register"
                         className="text-decoration-none ms-1"
                     >
                         Register
-                    </a>
+                    </Link>
 
                 </p>
 
