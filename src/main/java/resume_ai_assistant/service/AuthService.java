@@ -38,6 +38,15 @@ public class AuthService {
 
     public String login(LoginRequest request) {
 
+        System.out.println("Email = " + request.getEmail());
+
+        var optionalUser = userRepository.findByEmail(request.getEmail());
+
+        System.out.println("User Present = " + optionalUser.isPresent());
+
+        if(optionalUser.isPresent()){
+            System.out.println("DB Email = " + optionalUser.get().getEmail());
+        }
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() ->
                         new RuntimeException("User not found"));

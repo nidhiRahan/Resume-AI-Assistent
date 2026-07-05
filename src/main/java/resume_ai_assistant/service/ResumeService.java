@@ -20,7 +20,7 @@ public class ResumeService {
     private final ResumeRepository resumeRepository;
     private final UserRepository userRepository;
 
-    public String uploadResume(MultipartFile file)
+    public Resume uploadResume(MultipartFile file)
             throws IOException {
 
         String extractedText;
@@ -50,8 +50,8 @@ public class ResumeService {
                 .user(user)
                 .build();
 
-        resumeRepository.save(resume);
+        Resume savedResume =resumeRepository.save(resume);
 
-        return extractedText;
+        return savedResume;
     }
 }
