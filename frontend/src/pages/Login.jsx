@@ -1,17 +1,45 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import api from "../services/api";
 function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
-    const handleLogin = (e) => {
-        e.preventDefault();
+    const handleLogin = async (e) => {
 
-        console.log("Email:", email);
-        console.log("Password:", password);
-    };
+    e.preventDefault();
+
+    try {
+
+        const response = await api.post("/auth/login", {
+
+            email,
+            password
+
+        });
+
+        console.log(response.data);
+
+        localStorage.setItem("token", response.data.token);
+
+        alert("Login Successful ✅");
+
+        navigate("/dashboard");
+
+    } catch (error) {
+
+        console.log(error);
+
+        alert(
+            error.response?.data?.message ||
+            "Login Failed"
+        );
+
+    }
+
+};
 
     return (
 

@@ -28,9 +28,9 @@ function StatCard({ title, value, icon, color }) {
 
                         </div>
 
-                        <div
+                        <div className="stat-icon"
+
                             style={{
-                                fontSize: "40px",
                                 color: color
                             }}
                         >

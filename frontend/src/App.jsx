@@ -3,6 +3,10 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
+import UploadResume from "./pages/UploadResume";
+import AnalyzeResume from "./pages/AnalyzeResume";
+import AnalysisResult from "./pages/AnalysisResult";
+import History from "./pages/History";
 function App() {
 
     return (
@@ -31,6 +35,24 @@ function App() {
                     element={<Dashboard />}
                 />
 
+                 <Route
+                    path="/upload"
+                    element={<UploadResume/>}
+                  />
+
+                  <Route
+                    path="/analyze"
+                    element={<AnalyzeResume/>}
+                    />
+                    <Route
+    path="/history"
+    element={<History />}
+/>
+
+<Route
+path="/result"
+element={<AnalysisResult/>}
+/>
             </Routes>
 
         </BrowserRouter>

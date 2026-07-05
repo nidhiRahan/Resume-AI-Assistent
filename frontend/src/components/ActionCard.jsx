@@ -36,8 +36,8 @@ function ActionCard({ title, description, icon, buttonText, buttonColor, path })
 
                     <Link
                         to={path}
-                        className="btn text-white mt-2"
-                        style={{
+                            className="btn text-white mt-2 action-btn" 
+                            style={{
                             backgroundColor: buttonColor,
                             borderRadius: "10px",
                             width: "100%"

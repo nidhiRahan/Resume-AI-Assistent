@@ -32,7 +32,7 @@ function Navbar() {
 
                     </span>
 
-                    <button className="btn btn-danger">
+                    <button className="btn btn-danger logout-btn">
 
                         <FaSignOutAlt className="me-2" />
 

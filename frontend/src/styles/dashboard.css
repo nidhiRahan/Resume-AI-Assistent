@@ -1,0 +1,108 @@
+/* Background */
+
+body{
+    background: #f5f7fb;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Navbar */
+
+.navbar{
+    background: white !important;
+    border-radius: 15px;
+    margin:20px;
+}
+
+/* Welcome Section */
+
+.welcome-title{
+
+    font-size:35px;
+    font-weight:bold;
+
+}
+
+.welcome-subtitle{
+
+    color:gray;
+    font-size:18px;
+
+}
+
+/* Cards */
+
+.card{
+
+    border:none !important;
+
+    border-radius:20px !important;
+
+    transition:0.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.15) !important;
+
+}
+
+/* Stat Card */
+
+.stat-icon{
+
+    font-size:45px;
+
+}
+
+/* Action Button */
+
+.action-btn{
+
+    border-radius:12px;
+
+    padding:10px;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+.action-btn:hover{
+
+    transform:scale(1.05);
+
+}
+
+/* Logout Button */
+
+.logout-btn{
+
+    border-radius:10px;
+
+    font-weight:bold;
+
+}
+
+/* Recent Card */
+
+.recent-card{
+
+    border-radius:20px;
+
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+.welcome-title{
+
+font-size:26px;
+
+}
+
+}

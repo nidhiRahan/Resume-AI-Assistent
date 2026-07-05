@@ -22,13 +22,13 @@ function Dashboard() {
 
             <div className="container mt-5">
 
-                <h2 className="fw-bold">
+                <h2 className="welcome-title">
 
                     Welcome Back 👋
 
                 </h2>
 
-                <p className="text-muted">
+                <p className="welcome-subtitle">
 
                     Manage your AI Resume Analysis from one place.
 
