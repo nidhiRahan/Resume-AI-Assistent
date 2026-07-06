@@ -1,4 +1,6 @@
 import Navbar from "../components/Navbar";
+import { useLocation } from "react-router-dom";
+
 import {
     FaCheckCircle,
     FaTimesCircle,
@@ -8,39 +10,30 @@ import {
 
 function AnalysisResult() {
 
-    const result = {
+    const location = useLocation();
 
-        matchScore: 87,
+    const result = location.state;
 
-        skillsFound: [
-            "Java",
-            "Spring Boot",
-            "Hibernate",
-            "PostgreSQL",
-            "JWT"
-        ],
+    if (!result) {
 
-        missingSkills: [
-            "Docker",
-            "Kafka",
-            "AWS"
-        ],
+        return (
+            <>
+                <Navbar />
 
-        interviewQuestions: [
+                <div className="container mt-5">
 
-            "Explain Spring Boot architecture.",
+                    <div className="alert alert-warning text-center">
 
-            "Difference between JWT and Session?",
+                        No Analysis Result Found.
 
-            "How does Hibernate work?",
+                    </div>
 
-            "What is Dependency Injection?",
+                </div>
 
-            "Explain Docker in your project."
+            </>
+        );
 
-        ]
-
-    };
+    }
 
     return (
 
@@ -72,23 +65,23 @@ function AnalysisResult() {
 
                         <div className="score-circle">
 
-    <div className="score-number">
+                            <div className="score-number">
 
-        {result.matchScore}%
+                                {result.matchScore}%
 
-    </div>
+                            </div>
 
-    <div>
+                            <div>
 
-        Match Score
+                                Match Score
 
-    </div>
+                            </div>
 
-</div>
+                        </div>
 
                     </div>
 
-                    <hr className="my-5"/>
+                    <hr className="my-5" />
 
                     <div className="row">
 
@@ -98,7 +91,7 @@ function AnalysisResult() {
 
                                 <h4 className="text-success mb-4">
 
-                                    <FaCheckCircle className="me-2"/>
+                                    <FaCheckCircle className="me-2" />
 
                                     Skills Found
 
@@ -106,15 +99,15 @@ function AnalysisResult() {
 
                                 {
 
-                                    result.skillsFound.map((skill,index)=>(
+                                    result.skillsFound.map((skill, index) => (
 
-                                        <span
-className="skill-badge skill-found"
->
+                                        <span key={index}
+                                            className="skill-badge skill-found"
+                                        >
 
-{skill}
+                                            {skill}
 
-</span>
+                                        </span>
 
                                     ))
 
@@ -130,7 +123,7 @@ className="skill-badge skill-found"
 
                                 <h4 className="text-danger mb-4">
 
-                                    <FaTimesCircle className="me-2"/>
+                                    <FaTimesCircle className="me-2" />
 
                                     Missing Skills
 
@@ -138,15 +131,16 @@ className="skill-badge skill-found"
 
                                 {
 
-                                    result.missingSkills.map((skill,index)=>(
+                                    result.missingSkills.map((skill, index) => (
 
-                                        <span
-className="skill-badge skill-missing"
->
+                                        <span  
+                                            key={index}
+                                            className="skill-badge skill-missing"
+                                        >
 
-{skill}
+                                            {skill}
 
-</span>
+                                        </span>
 
                                     ))
 
@@ -170,16 +164,16 @@ className="skill-badge skill-missing"
 
                             {
 
-                                result.interviewQuestions.map((q,index)=>(
+                                result.interviewQuestions.map((q, index) => (
 
-                                   <div
-key={index}
-className="question-card"
->
+                                    <div
+                                        key={index}
+                                        className="question-card"
+                                    >
 
-<b>Q{index+1}.</b> {q}
+                                        <b>Q{index + 1}.</b> {q}
 
-</div>
+                                    </div>
 
                                 ))
 
@@ -193,7 +187,7 @@ className="question-card"
                         className="btn btn-primary download-btn w-100 mt-5"
                     >
 
-                        <FaDownload className="me-2"/>
+                        <FaDownload className="me-2" />
 
                         Download PDF
 
