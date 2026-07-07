@@ -79,9 +79,6 @@ public class GeminiService {
 
 
 
-
-
-
         JsonNode root = objectMapper.readTree(response);
 
         String aiText = root.path("candidates")
@@ -123,8 +120,10 @@ public class GeminiService {
                         .createdAt(LocalDateTime.now())
                         .build();
 
-        analysisResultRepository.save(analysisResult);
+        AnalysisResult savedAnalysis =
+                analysisResultRepository.save(analysisResult);
 
+        result.setAnalysisId(savedAnalysis.getId());
         return result;
 //        return objectMapper.readValue(
 //                aiText,

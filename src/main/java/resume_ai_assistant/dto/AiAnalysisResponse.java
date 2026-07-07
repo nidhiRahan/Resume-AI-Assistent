@@ -12,6 +12,8 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class AiAnalysisResponse {
+    private Long analysisId;
+
     private Integer matchScore;
 
     private List<String> skillsFound;
