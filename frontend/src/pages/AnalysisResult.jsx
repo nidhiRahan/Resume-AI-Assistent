@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar";
 import { useLocation } from "react-router-dom";
+import api from "../services/api";
 
 import {
     FaCheckCircle,
@@ -14,10 +15,62 @@ function AnalysisResult() {
 
     const result = location.state;
 
+console.log("Result Page Data:", result);
+    const downloadPdf = async () => {
+    console.log("Downloading Analysis ID:", result.analysisId);
+
+        try {
+
+            const response = await api.get(
+
+                `/analysis/report/${result.analysisId}`,
+
+                {
+
+                    responseType: "blob"
+
+                }
+
+            );
+
+            const url = window.URL.createObjectURL(
+
+                new Blob([response.data])
+
+            );
+
+            const link = document.createElement("a");
+
+            link.href = url;
+
+            link.download = "analysis-report.pdf";
+
+            document.body.appendChild(link);
+
+            link.click();
+
+            document.body.removeChild(link);
+
+            window.URL.revokeObjectURL(url);
+
+        }
+
+        catch (error) {
+
+            console.log(error);
+
+            alert("Unable to download PDF");
+
+        }
+
+    };
+
     if (!result) {
 
         return (
+
             <>
+
                 <Navbar />
 
                 <div className="container mt-5">
@@ -31,6 +84,7 @@ function AnalysisResult() {
                 </div>
 
             </>
+
         );
 
     }
@@ -38,6 +92,7 @@ function AnalysisResult() {
     return (
 
         <>
+
             <Navbar />
 
             <div className="container mt-5">
@@ -52,11 +107,15 @@ function AnalysisResult() {
                         />
 
                         <h2 className="fw-bold">
+
                             AI Resume Analysis Report
+
                         </h2>
 
                         <p className="text-muted">
+
                             Here's your resume analysis summary
+
                         </p>
 
                     </div>
@@ -101,7 +160,8 @@ function AnalysisResult() {
 
                                     result.skillsFound.map((skill, index) => (
 
-                                        <span key={index}
+                                        <span
+                                            key={index}
                                             className="skill-badge skill-found"
                                         >
 
@@ -133,7 +193,7 @@ function AnalysisResult() {
 
                                     result.missingSkills.map((skill, index) => (
 
-                                        <span  
+                                        <span
                                             key={index}
                                             className="skill-badge skill-missing"
                                         >
@@ -160,31 +220,28 @@ function AnalysisResult() {
 
                         </h4>
 
-                        <ol>
+                        {
 
-                            {
+                            result.interviewQuestions.map((q, index) => (
 
-                                result.interviewQuestions.map((q, index) => (
+                                <div
+                                    key={index}
+                                    className="question-card"
+                                >
 
-                                    <div
-                                        key={index}
-                                        className="question-card"
-                                    >
+                                    <b>Q{index + 1}.</b> {q}
 
-                                        <b>Q{index + 1}.</b> {q}
+                                </div>
 
-                                    </div>
+                            ))
 
-                                ))
-
-                            }
-
-                        </ol>
+                        }
 
                     </div>
 
                     <button
                         className="btn btn-primary download-btn w-100 mt-5"
+                        onClick={downloadPdf}
                     >
 
                         <FaDownload className="me-2" />

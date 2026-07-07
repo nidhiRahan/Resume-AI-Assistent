@@ -29,7 +29,7 @@ const navigate = useNavigate();
 
         
 
-        console.log(response.data);
+        console.log("Result =",response.data);
 
         navigate("/result", {
 
