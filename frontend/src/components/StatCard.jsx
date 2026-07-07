@@ -2,7 +2,7 @@ function StatCard({ title, value, icon, color }) {
 
     return (
 
-        <div className="col-md-4 mb-4">
+        <div className="col-lg-3 col-md-6 mb-4">
 
             <div
                 className="card border-0 shadow-lg h-100"
