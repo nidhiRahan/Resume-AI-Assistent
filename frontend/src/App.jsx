@@ -7,6 +7,9 @@ import UploadResume from "./pages/UploadResume";
 import AnalyzeResume from "./pages/AnalyzeResume";
 import AnalysisResult from "./pages/AnalysisResult";
 import History from "./pages/History";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
 
     return (
@@ -55,6 +58,11 @@ element={<AnalysisResult/>}
 />
             </Routes>
 
+<ToastContainer
+    position="top-right"
+    autoClose={3000}
+    theme="colored"
+/>
         </BrowserRouter>
 
     );

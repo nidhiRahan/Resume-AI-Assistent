@@ -5,10 +5,11 @@ function StatCard({ title, value, icon, color }) {
         <div className="col-lg-3 col-md-6 mb-4">
 
             <div
-                className="card border-0 shadow-lg h-100"
+                className="card border-0 shadow-lg h-100 stat-card"
                 style={{
                     borderRadius: "20px",
-                    transition: "0.3s"
+                    transition: "all 0.3s ease",
+                    cursor: "pointer"
                 }}
             >
 
@@ -18,20 +19,21 @@ function StatCard({ title, value, icon, color }) {
 
                         <div>
 
-                            <h6 className="text-muted">
+                            <h6 className="text-muted mb-2">
                                 {title}
                             </h6>
 
-                            <h2 className="fw-bold">
+                            <h2 className="fw-bold mb-0">
                                 {value}
                             </h2>
 
                         </div>
 
-                        <div className="stat-icon"
-
+                        <div
+                            className="stat-icon"
                             style={{
-                                color: color
+                                color: color,
+                                fontSize: "40px"
                             }}
                         >
                             {icon}

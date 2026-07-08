@@ -3,11 +3,15 @@ import Navbar from "../components/Navbar";
 import { FaRobot } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
+import { toast } from "react-toastify";
+
 function AnalyzeResume() {
 const navigate = useNavigate();
 
 
     const [jobDescription, setJobDescription] = useState("");
+    const [loading, setLoading] = useState(false);
+    
 
    const handleAnalyze = async () => {
 
@@ -19,6 +23,7 @@ const navigate = useNavigate();
     }
 
     try {
+    setLoading(true); 
 
         const resumeId = localStorage.getItem("resumeId");
 
@@ -30,6 +35,8 @@ const navigate = useNavigate();
         
 
         console.log("Result =",response.data);
+        toast.success("Analysis Completed Successfully");
+        await new Promise(resolve => setTimeout(resolve, 1000));
 
         navigate("/result", {
 
@@ -42,16 +49,17 @@ const navigate = useNavigate();
     catch (error) {
 
         console.log(error);
-
-        alert(
-
-            error.response?.data?.message ||
-
-            "Analysis Failed"
-
-        );
+        toast.error(
+        error.response?.data?.message ||
+        "Analysis Failed"
+    );
 
     }
+    finally{
+
+    setLoading(false);
+
+}
 
 };
 
@@ -91,11 +99,26 @@ const navigate = useNavigate();
                     />
 
                     <button
-                        className="btn btn-success mt-4"
-                        onClick={handleAnalyze}
-                    >
-                        Analyze Resume
-                    </button>
+    className="btn btn-success mt-4"
+    onClick={handleAnalyze}
+    disabled={loading}
+>
+
+    {
+
+        loading
+
+            ?
+
+            "Analyzing..."
+
+            :
+
+            "Analyze Resume"
+
+    }
+
+</button>
 
                 </div>
 

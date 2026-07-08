@@ -1,26 +1,69 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import api from "../services/api";
+import { toast } from "react-toastify";
 function Register() {
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
-    const handleRegister = (e) => {
-        e.preventDefault();
+    const handleRegister = async (e) => {
 
-        if (password !== confirmPassword) {
-            alert("Passwords do not match!");
-            return;
-        }
+    e.preventDefault();
 
-        console.log({
+    if (password !== confirmPassword) {
+
+        toast.error("Passwords do not match");
+
+        return;
+
+    }
+
+    try {
+
+        setLoading(true);
+
+        await api.post("/auth/register", {
+
             name,
             email,
             password
+
         });
-    };
+
+        toast.success("Registration Successful");
+
+        setTimeout(() => {
+
+            navigate("/login");
+
+        }, 1000);
+
+    }
+
+    catch (error) {
+
+        toast.error(
+
+            error.response?.data?.message ||
+
+            "Registration Failed"
+
+        );
+
+    }
+
+    finally {
+
+        setLoading(false);
+
+    }
+
+};
 
     return (
 
@@ -124,11 +167,22 @@ function Register() {
                     </div>
 
                     <button
-                        type="submit"
-                        className="btn btn-success w-100"
-                    >
-                        Register
-                    </button>
+    type="submit"
+    className="btn btn-success w-100"
+    disabled={loading}
+>
+
+    {
+
+        loading
+
+            ? "Registering..."
+
+            : "Register"
+
+    }
+
+</button>
 
                 </form>
 

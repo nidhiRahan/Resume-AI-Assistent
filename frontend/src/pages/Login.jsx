@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../services/api";
+import { toast } from "react-toastify";
+
 function Login() {
 
     const [email, setEmail] = useState("");
@@ -24,7 +26,10 @@ function Login() {
 
         localStorage.setItem("token", response.data.token);
 
-        alert("Login Successful ✅");
+       // alert("Login Successful ✅");
+        toast.success("Login Successful");
+       
+        await new Promise(resolve => setTimeout(resolve, 1000));
 
         navigate("/dashboard");
 
@@ -32,10 +37,10 @@ function Login() {
 
         console.log(error);
 
-        alert(
-            error.response?.data?.message ||
-            "Login Failed"
-        );
+          toast.error(
+        error.response?.data?.message ||
+        "Invalid Email or Password"
+    );
 
     }
 

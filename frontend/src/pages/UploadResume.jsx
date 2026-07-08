@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import { FaCloudUploadAlt, FaFilePdf } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
+import { toast } from "react-toastify";
 
 function UploadResume() {
     const navigate = useNavigate();
@@ -44,14 +45,14 @@ function UploadResume() {
         console.log(response.data);
 
       //  alert("Resume Uploaded Successfully ✅");
-
+toast.success("Resume Uploaded Successfully");
         // Resume Id save karenge
         localStorage.setItem(
             "resumeId",
             response.data.resumeId
         );
-alert(response.data.message);
-
+//alert(response.data.message);
+//toast.success("Resume Uploaded Successfully")
         navigate("/analyze");
 
     }
@@ -67,6 +68,7 @@ alert(response.data.message);
             "Upload Failed"
 
         );
+        toast.error("Upload Failed");
 
     }
 
