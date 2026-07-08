@@ -9,6 +9,8 @@ import AnalysisResult from "./pages/AnalysisResult";
 import History from "./pages/History";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ProtectedRoute from "./components/ProtectedRoute";
+import PublicRoute from "./components/PublicRoute";
 
 function App() {
 
@@ -25,37 +27,66 @@ function App() {
 
                 <Route
                     path="/login"
-                    element={<Login />}
+                    element={
+                        <PublicRoute>
+                            <Login />
+                        </PublicRoute>
+                    }
                 />
 
                 <Route
                     path="/register"
-                    element={<Register />}
+                    element={
+                         <PublicRoute>
+                            <Register />
+                        </PublicRoute>
+                    }
                 />
 
                 <Route
                     path="/dashboard"
-                    element={<Dashboard />}
+                    element={
+                         <ProtectedRoute>
+                            <Dashboard />
+                        </ProtectedRoute>
+                    }
                 />
 
                  <Route
                     path="/upload"
-                    element={<UploadResume/>}
+                    element={
+                        <ProtectedRoute>
+                            <UploadResume />
+                        </ProtectedRoute>
+                    }
                   />
 
                   <Route
                     path="/analyze"
-                    element={<AnalyzeResume/>}
+                    element={
+                        <ProtectedRoute>
+                            <AnalyzeResume />
+                        </ProtectedRoute>
+                    }
                     />
-                    <Route
-    path="/history"
-    element={<History />}
-/>
 
-<Route
-path="/result"
-element={<AnalysisResult/>}
-/>
+                    <Route
+                        path="/history"
+                        element={
+                        <ProtectedRoute>
+                                <History />
+                            </ProtectedRoute>
+                        }
+                    />
+
+                        <Route
+                        path="/result"
+                        element={
+                            <ProtectedRoute>
+                                    <AnalysisResult />
+                                </ProtectedRoute>
+                        }
+                        />
             </Routes>
 
 <ToastContainer
