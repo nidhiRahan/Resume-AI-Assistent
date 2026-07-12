@@ -17,7 +17,7 @@ const navigate = useNavigate();
 
     if (!jobDescription.trim()) {
 
-        alert("Please enter Job Description");
+        toast.error("Please enter Job Description");
 
         return;
     }

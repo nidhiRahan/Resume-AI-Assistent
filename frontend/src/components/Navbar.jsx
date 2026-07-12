@@ -1,19 +1,29 @@
-import { FaRobot, FaBell, FaUserCircle, FaSignOutAlt } from "react-icons/fa";
+import {
+    FaRobot,
+    FaBell,
+    FaUserCircle,
+    FaSignOutAlt
+} from "react-icons/fa";
+
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function Navbar() {
+
     const navigate = useNavigate();
 
     const handleLogout = () => {
 
         localStorage.removeItem("token");
         localStorage.removeItem("resumeId");
+
         toast.success("Logged Out Successfully");
 
         setTimeout(() => {
 
-            navigate("/login");
+            navigate("/login", {
+                replace: true
+            });
 
         }, 800);
 
@@ -53,6 +63,8 @@ function Navbar() {
                         className="btn btn-danger"
                         onClick={handleLogout}
                     >
+
+                        <FaSignOutAlt className="me-2" />
 
                         Logout
 

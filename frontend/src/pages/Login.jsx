@@ -22,13 +22,15 @@ function Login() {
 
         });
 
-        console.log(response.data);
-
+        console.log("result is ",response.data);
+localStorage.setItem("token", response.data.token);
+localStorage.setItem("resumeId", response.data.resumeId);
+localStorage.setItem("name", response.data.name);
         localStorage.setItem("token", response.data.token);
 
        // alert("Login Successful ✅");
         toast.success("Login Successful");
-       
+       console.log("output is::",localStorage.getItem("resumeId"));
         await new Promise(resolve => setTimeout(resolve, 1000));
 
         navigate("/dashboard");

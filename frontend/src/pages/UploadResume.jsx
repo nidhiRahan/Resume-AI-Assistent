@@ -8,71 +8,70 @@ import { toast } from "react-toastify";
 function UploadResume() {
     const navigate = useNavigate();
     const [file, setFile] = useState(null);
-    
+
     const handleUpload = async () => {
 
-    if (!file) {
+        if (!file) {
 
-        alert("Please select a PDF");
+            toast.error("Please select a PDF");
 
-        return;
-    }
+            return;
+        }
 
-    try {
+        try {
 
-        const formData = new FormData();
+            const formData = new FormData();
 
-        formData.append("file", file);
+            formData.append("file", file);
 
-        const response = await api.post(
+            const response = await api.post(
 
-            "/resume/upload",
+                "/resume/upload",
 
-            formData,
+                formData,
 
-            {
+                {
 
-                headers: {
+                    headers: {
 
-                    "Content-Type": "multipart/form-data"
+                        "Content-Type": "multipart/form-data"
+
+                    }
 
                 }
 
-            }
+            );
 
-        );
+            console.log(response.data);
 
-        console.log(response.data);
+            //  alert("Resume Uploaded Successfully ✅");
+            toast.success("Resume Uploaded Successfully");
+            // Resume Id save karenge
+            localStorage.setItem(
+                "resumeId",
+                response.data.resumeId
+            );
+            //alert(response.data.message);
+            //toast.success("Resume Uploaded Successfully")
+            navigate("/analyze");
 
-      //  alert("Resume Uploaded Successfully ✅");
-toast.success("Resume Uploaded Successfully");
-        // Resume Id save karenge
-        localStorage.setItem(
-            "resumeId",
-            response.data.resumeId
-        );
-//alert(response.data.message);
-//toast.success("Resume Uploaded Successfully")
-        navigate("/analyze");
+        }
 
-    }
+        catch (error) {
 
-    catch (error) {
+            console.log(error);
 
-        console.log(error);
+            toast.error(
 
-        alert(
+                error.response?.data?.message ||
 
-            error.response?.data?.message ||
+                "Upload Failed"
 
-            "Upload Failed"
+            );
 
-        );
-        toast.error("Upload Failed");
+        }
 
-    }
-
-};
+    };
 
     return (
 

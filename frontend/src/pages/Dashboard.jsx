@@ -122,7 +122,7 @@ function Dashboard() {
 
                     <ActionCard
                         title="Analyze Resume"
-                        description="Analyze your resume using Gemini AI."
+                        description="Analyze your resume."
                         icon={<FaRobot />}
                         buttonText="Analyze"
                         buttonColor="#10b981"
