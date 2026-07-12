@@ -26,11 +26,7 @@ function History() {
 
         try {
 
-            const resumeId = localStorage.getItem("resumeId");
-console.log("ResumeId =", resumeId);
-            const response = await api.get(
-                `/analysis/history/${resumeId}`
-            );
+            const response = await api.get("/analysis/history");
 
             setReports(response.data);
 

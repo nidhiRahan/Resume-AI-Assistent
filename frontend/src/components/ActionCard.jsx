@@ -1,6 +1,30 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function ActionCard({ title, description, icon, buttonText, buttonColor, path }) {
+function ActionCard({
+    title,
+    description,
+    icon,
+    buttonText,
+    buttonColor,
+    path,
+    onClick
+}) {
+
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+
+        if (onClick) {
+
+            onClick();
+
+        } else if (path) {
+
+            navigate(path);
+
+        }
+
+    };
 
     return (
 
@@ -34,17 +58,13 @@ function ActionCard({ title, description, icon, buttonText, buttonColor, path })
                         {description}
                     </p>
 
-                    <Link
-                        to={path}
-                            className="btn text-white mt-2 action-btn" 
-                            style={{
-                            backgroundColor: buttonColor,
-                            borderRadius: "10px",
-                            width: "100%"
-                        }}
+                    <button
+                        className="btn mt-3 text-white"
+                        style={{ backgroundColor: buttonColor }}
+                        onClick={handleClick}
                     >
                         {buttonText}
-                    </Link>
+                    </button>
 
                 </div>
 

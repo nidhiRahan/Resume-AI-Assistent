@@ -17,23 +17,19 @@ public class AnalysisService {
     private final AnalysisResultRepository analysisResultRepository;
     private final ResumeRepository resumeRepository;
 
-    public List<AnalysisResult> getHistory(Long resumeId) {
-
-        Resume resume = resumeRepository
-                .findById(resumeId)
-                .orElseThrow(() ->
-                        new RuntimeException("Resume not found"));
+    public List<AnalysisResult> getHistory() {
 
         String email = getLoggedInUserEmail();
 
-        if (!resume.getUser().getEmail().equals(email)) {
-            throw new RuntimeException("Access Denied");
-        }
+        List<Long> resumeIds =
+                resumeRepository.findResumeIdsByUserEmail(email);
 
-        return analysisResultRepository.findByResumeId(resumeId);
+        return analysisResultRepository
+                .findByResumeIdInOrderByCreatedAtDesc(resumeIds);
     }
 
     private String getLoggedInUserEmail() {
+
         return SecurityContextHolder
                 .getContext()
                 .getAuthentication()

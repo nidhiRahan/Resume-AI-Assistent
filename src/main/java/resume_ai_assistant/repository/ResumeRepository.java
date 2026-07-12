@@ -20,6 +20,7 @@ ORDER BY r.id DESC
 LIMIT 1
 """)
     Long findLatestResumeIdByEmail(String email);
+
     @Query("""
     SELECT r.id
     FROM Resume r
@@ -27,5 +28,5 @@ LIMIT 1
     """)
     List<Long> findResumeIdsByUserEmail(String email);
 
-
+    Resume findTopByUserEmailOrderByIdDesc(String email);
 }

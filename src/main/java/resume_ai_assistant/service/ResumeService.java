@@ -54,4 +54,24 @@ public class ResumeService {
 
         return savedResume;
     }
+
+    public Resume getLatestResume() {
+
+        String email = SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getName();
+
+        Resume resume = resumeRepository
+                .findTopByUserEmailOrderByIdDesc(email);
+
+        if (resume == null) {
+
+            throw new RuntimeException("Please upload your resume first");
+
+        }
+
+        return resume;
+
+    }
 }

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import StatCard from "../components/StatCard";
 import ActionCard from "../components/ActionCard";
-
+import { toast } from "react-toastify";
 import api from "../services/api";
 
 import {
@@ -52,6 +52,28 @@ function Dashboard() {
             console.log(error);
 
             alert("Unable to load Dashboard");
+
+        }
+
+    };
+
+    const navigate = useNavigate();
+
+    const handleAnalyze = async () => {
+
+        try {
+
+            await api.get("/resume/latest");
+
+            navigate("/analyze");
+
+        }
+
+        catch (error) {
+
+            toast.warning("Please upload your resume first");
+
+            navigate("/upload");
 
         }
 
@@ -126,9 +148,8 @@ function Dashboard() {
                         icon={<FaRobot />}
                         buttonText="Analyze"
                         buttonColor="#10b981"
-                        path="/analyze"
+                        onClick={handleAnalyze}
                     />
-
                     <ActionCard
                         title="Analysis History"
                         description="View previous AI analysis reports."

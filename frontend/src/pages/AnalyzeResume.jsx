@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import { FaRobot } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -6,64 +6,92 @@ import api from "../services/api";
 import { toast } from "react-toastify";
 
 function AnalyzeResume() {
-const navigate = useNavigate();
 
+    const navigate = useNavigate();
 
     const [jobDescription, setJobDescription] = useState("");
     const [loading, setLoading] = useState(false);
-    
 
-   const handleAnalyze = async () => {
-
-    if (!jobDescription.trim()) {
-
-        toast.error("Please enter Job Description");
-
-        return;
-    }
-
-    try {
-    setLoading(true); 
+    // Check if resume is uploaded
+    useEffect(() => {
 
         const resumeId = localStorage.getItem("resumeId");
 
-        const response = await api.post("/ai/analyze", {
-    resumeId: Number(localStorage.getItem("resumeId")),
-    jobDescription: jobDescription
-});
+        if (!resumeId) {
 
-        
+            toast.warning("Please upload your resume first");
 
-        console.log("Result =",response.data);
-        toast.success("Analysis Completed Successfully");
-        await new Promise(resolve => setTimeout(resolve, 1000));
+            setTimeout(() => {
 
-        navigate("/result", {
+                navigate("/upload");
 
-            state: response.data
+            }, 1000);
 
-        });
+        }
 
-    }
+    }, [navigate]);
 
-    catch (error) {
+    const handleAnalyze = async () => {
 
-        console.log(error);
-        toast.error(
-        error.response?.data?.message ||
-        "Analysis Failed"
-    );
+        if (!jobDescription.trim()) {
 
-    }
-    finally{
+            toast.error("Please enter Job Description");
 
-    setLoading(false);
+            return;
 
-}
+        }
 
-};
+        try {
+
+            setLoading(true);
+
+            const resumeId = localStorage.getItem("resumeId");
+
+            const response = await api.post("/ai/analyze", {
+
+                resumeId: Number(resumeId),
+                jobDescription: jobDescription
+
+            });
+
+            console.log("Result =", response.data);
+
+            toast.success("Analysis Completed Successfully");
+
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            navigate("/result", {
+
+                state: response.data
+
+            });
+
+        }
+
+        catch (error) {
+
+            console.log(error);
+
+            toast.error(
+
+                error.response?.data?.message ||
+
+                "Analysis Failed"
+
+            );
+
+        }
+
+        finally {
+
+            setLoading(false);
+
+        }
+
+    };
 
     return (
+
         <>
             <Navbar />
 
@@ -79,11 +107,15 @@ const navigate = useNavigate();
                         />
 
                         <h2 className="fw-bold">
+
                             AI Resume Analysis
+
                         </h2>
 
                         <p className="text-muted">
+
                             Paste the Job Description below
+
                         </p>
 
                     </div>
@@ -99,33 +131,31 @@ const navigate = useNavigate();
                     />
 
                     <button
-    className="btn btn-success mt-4"
-    onClick={handleAnalyze}
-    disabled={loading}
->
+                        className="btn btn-success mt-4"
+                        onClick={handleAnalyze}
+                        disabled={loading}
+                    >
 
-    {
+                        {
 
-        loading
+                            loading
 
-            ?
+                                ? "Analyzing..."
 
-            "Analyzing..."
+                                : "Analyze Resume"
 
-            :
+                        }
 
-            "Analyze Resume"
-
-    }
-
-</button>
+                    </button>
 
                 </div>
 
             </div>
 
         </>
+
     );
+
 }
 
 export default AnalyzeResume;

@@ -21,11 +21,12 @@ public class AnalysisController {
     private final AnalysisService analysisService;
     private final PdfReportService pdfReportService;
 
-    @GetMapping("/history/{resumeId}")
-    public List<AnalysisResult> getHistory(
-            @PathVariable Long resumeId) {
+    @GetMapping("/history")
+    public ResponseEntity<List<AnalysisResult>> getHistory() {
 
-        return analysisService.getHistory(resumeId);
+        return ResponseEntity.ok(
+                analysisService.getHistory()
+        );
     }
 
     @GetMapping("/report/{analysisId}")
