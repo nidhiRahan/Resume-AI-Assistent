@@ -3,8 +3,11 @@ package resume_ai_assistant.service;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import resume_ai_assistant.dto.LoginRequest;
+import resume_ai_assistant.dto.LoginResponse;
 import resume_ai_assistant.dto.RegisterRequest;
+import resume_ai_assistant.entity.Resume;
 import resume_ai_assistant.entity.User;
+import resume_ai_assistant.repository.ResumeRepository;
 import resume_ai_assistant.repository.UserRepository;
 
 @Service
@@ -12,18 +15,21 @@ public class AuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
+    private final ResumeRepository resumeRepository;
 
-    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtService jwtService) {
+    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtService jwtService,
+                       ResumeRepository resumeRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
+        this.resumeRepository = resumeRepository;
     }
 
-    public String  register(RegisterRequest request){
-        if(userRepository.findByEmail(request.getEmail()).isPresent()){
+    public String register(RegisterRequest request) {
+        if (userRepository.findByEmail(request.getEmail()).isPresent()) {
             throw new RuntimeException("Email already exists");
         }
-        User user =User.builder()
+        User user = User.builder()
                 .name(request.getName())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
@@ -36,17 +42,8 @@ public class AuthService {
 
     }
 
-    public String login(LoginRequest request) {
+    public LoginResponse login(LoginRequest request) {
 
-        System.out.println("Email = " + request.getEmail());
-
-        var optionalUser = userRepository.findByEmail(request.getEmail());
-
-        System.out.println("User Present = " + optionalUser.isPresent());
-
-        if(optionalUser.isPresent()){
-            System.out.println("DB Email = " + optionalUser.get().getEmail());
-        }
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() ->
                         new RuntimeException("User not found"));
@@ -58,6 +55,16 @@ public class AuthService {
             throw new RuntimeException("Invalid password");
         }
 
-        return jwtService.generateToken(user.getEmail());
+        String token = jwtService.generateToken(user.getEmail());
+
+        Long resumeId = resumeRepository.findLatestResumeIdByEmail(user.getEmail());
+
+
+        return LoginResponse.builder()
+                .token(token)
+                .name(user.getName())
+                .email(user.getEmail())
+                .resumeId(resumeId)
+                .build();
     }
 }

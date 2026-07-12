@@ -13,6 +13,14 @@ public interface ResumeRepository extends JpaRepository<Resume,Long> {
     long countByUserEmail(String email);
 
     @Query("""
+SELECT r.id
+FROM Resume r
+WHERE r.user.email = :email
+ORDER BY r.id DESC
+LIMIT 1
+""")
+    Long findLatestResumeIdByEmail(String email);
+    @Query("""
     SELECT r.id
     FROM Resume r
     WHERE r.user.email = :email
