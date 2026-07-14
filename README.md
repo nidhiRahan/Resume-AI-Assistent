@@ -175,35 +175,25 @@ Example:
 ```
 # 📷 Screenshots
 
-## 🔐 Login Page
+## 🔐 Login
 
 ![Login](screenshots/login.png)
 
----
-
-## 📝 Register Page
+## 📝 Register
 
 ![Register](screenshots/register.png)
-
----
 
 ## 🏠 Dashboard
 
 ![Dashboard](screenshots/dashboard.png)
 
----
-
 ## 📄 Resume Upload
 
-![Resume Upload](screenshots/resumeUpload.png)
+![Resume Upload](screenshots/ResumeUpload.png)
 
----
+## 🤖 Resume Analyze
 
-## 🤖 Resume Analysis
-
-![Resume Analysis](screenshots/resumeAnalyze.png)
-
----
+![Resume Analyze](screenshots/analyzeResume.png)
 
 ## 📊 Analysis Result
 
