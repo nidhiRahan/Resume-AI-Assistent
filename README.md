@@ -168,37 +168,39 @@ The application stores:
 
 # 📷 Screenshots
 
-> Add screenshots inside a **screenshots/** folder.
-
-Example:
-
-```
-# 📷 Screenshots
-
 ## 🔐 Login
 
 ![Login](screenshots/login.png)
+
+---
 
 ## 📝 Register
 
 ![Register](screenshots/register.png)
 
+---
+
 ## 🏠 Dashboard
 
 ![Dashboard](screenshots/dashboard.png)
+
+---
 
 ## 📄 Resume Upload
 
 ![Resume Upload](screenshots/ResumeUpload.png)
 
+---
+
 ## 🤖 Resume Analyze
 
 ![Resume Analyze](screenshots/analyzeResume.png)
 
+---
+
 ## 📊 Analysis Result
 
 ![Analysis Result](screenshots/analyzeResult.png)
-```
 
 ---
 
