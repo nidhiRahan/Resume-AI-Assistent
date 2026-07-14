@@ -6,8 +6,12 @@ import api from "../services/api";
 import { toast } from "react-toastify";
 
 function UploadResume() {
+
     const navigate = useNavigate();
+
     const [file, setFile] = useState(null);
+
+    const [loading, setLoading] = useState(false);
 
     const handleUpload = async () => {
 
@@ -16,9 +20,12 @@ function UploadResume() {
             toast.error("Please select a PDF");
 
             return;
+
         }
 
         try {
+
+            setLoading(true);
 
             const formData = new FormData();
 
@@ -44,15 +51,15 @@ function UploadResume() {
 
             console.log(response.data);
 
-            //  alert("Resume Uploaded Successfully ✅");
             toast.success("Resume Uploaded Successfully");
-            // Resume Id save karenge
+
             localStorage.setItem(
                 "resumeId",
                 response.data.resumeId
             );
-            //alert(response.data.message);
-            //toast.success("Resume Uploaded Successfully")
+
+            setFile(null);
+
             navigate("/analyze");
 
         }
@@ -71,11 +78,18 @@ function UploadResume() {
 
         }
 
+        finally {
+
+            setLoading(false);
+
+        }
+
     };
 
     return (
 
         <>
+
             <Navbar />
 
             <div className="container mt-5">
@@ -117,23 +131,52 @@ function UploadResume() {
 
                     </div>
 
-                    {file && (
+                    {
 
-                        <div className="alert alert-success mt-4">
+                        file && (
 
-                            <FaFilePdf className="me-2" />
+                            <div className="alert alert-success mt-4">
 
-                            {file.name}
+                                <FaFilePdf className="me-2" />
 
-                        </div>
+                                {file.name}
 
-                    )}
+                            </div>
+
+                        )
+
+                    }
 
                     <button
                         className="btn btn-primary mt-4 w-100"
                         onClick={handleUpload}
+                        disabled={loading}
                     >
-                        Upload Resume
+
+                        {
+
+                            loading ? (
+
+                                <>
+
+                                    <span
+                                        className="spinner-border spinner-border-sm me-2"
+                                        role="status"
+                                        aria-hidden="true"
+                                    ></span>
+
+                                    Uploading...
+
+                                </>
+
+                            ) : (
+
+                                "Upload Resume"
+
+                            )
+
+                        }
+
                     </button>
 
                 </div>
@@ -143,6 +186,7 @@ function UploadResume() {
         </>
 
     );
+
 }
 
 export default UploadResume;

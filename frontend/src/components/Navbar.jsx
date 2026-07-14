@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
     FaRobot,
     FaBell,
@@ -9,6 +10,9 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function Navbar() {
+    const [darkMode, setDarkMode] = useState(
+        localStorage.getItem("theme") === "dark"
+    );
 
     const navigate = useNavigate();
 
@@ -29,9 +33,29 @@ function Navbar() {
 
     };
 
+    useEffect(() => {
+
+        if (darkMode) {
+
+            document.body.classList.add("dark-mode");
+            localStorage.setItem("theme", "dark");
+
+        } else {
+
+            document.body.classList.remove("dark-mode");
+            localStorage.setItem("theme", "light");
+
+        }
+
+    }, [darkMode]);
+
     return (
 
-        <nav className="navbar navbar-expand-lg bg-white shadow-sm px-4 py-3">
+        <nav
+    className={`navbar navbar-expand-lg shadow-sm px-4 py-3 ${
+        darkMode ? "navbar-dark bg-dark" : "bg-white"
+    }`}
+>
 
             <div className="container-fluid">
 
@@ -58,6 +82,13 @@ function Navbar() {
                         Nidhi
 
                     </span>
+
+                    <button
+                        className="btn btn-dark me-3"
+                        onClick={() => setDarkMode(!darkMode)}
+                    >
+                        {darkMode ? "☀️" : "🌙"}
+                    </button>
 
                     <button
                         className="btn btn-danger"
