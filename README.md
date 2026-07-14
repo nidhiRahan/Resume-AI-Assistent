@@ -173,16 +173,41 @@ The application stores:
 Example:
 
 ```
-screenshots/
-│
-├── login.png
-├── register.png
-├── dashboard.png
-├── upload.png
-├── analyze.png
-├── result.png
-├── history.png
-├── darkmode.png
+# 📷 Screenshots
+
+## 🔐 Login Page
+
+![Login](screenshots/login.png)
+
+---
+
+## 📝 Register Page
+
+![Register](screenshots/register.png)
+
+---
+
+## 🏠 Dashboard
+
+![Dashboard](screenshots/dashboard.png)
+
+---
+
+## 📄 Resume Upload
+
+![Resume Upload](screenshots/resumeUpload.png)
+
+---
+
+## 🤖 Resume Analysis
+
+![Resume Analysis](screenshots/resumeAnalyze.png)
+
+---
+
+## 📊 Analysis Result
+
+![Analysis Result](screenshots/analyzeResult.png)
 ```
 
 ---
