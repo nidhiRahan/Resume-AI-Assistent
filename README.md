@@ -1,176 +1,271 @@
-# 🚀 Resume AI Assistant
+# 🤖 Resume AI Assistant
 
-<p align="center">
-  <b>AI-Powered Resume Analysis Platform built with Spring Boot, PostgreSQL, JWT Authentication, and Google Gemini AI</b>
-</p>
+An AI-powered Resume Analysis Platform built with **Spring Boot, React, PostgreSQL, JWT Authentication, and Google Gemini AI**.
 
-<p align="center">
-  Analyze resumes, identify skill gaps, calculate match scores, and generate AI-powered interview questions.
-</p>
+The application analyzes resumes against a Job Description, calculates a match score, identifies missing skills, and generates AI-powered interview questions to help candidates improve their resumes.
 
 ---
 
 ## 🌐 Live Demo
 
-🔗 **Swagger API Documentation**
+### 🚀 Frontend
+https://resume-ai-assistent.vercel.app
 
+### 📚 Backend API (Swagger)
 https://resume-ai-assistent.onrender.com/swagger-ui/index.html
 
 ---
 
-## ✨ Key Features
+# ✨ Features
 
-✅ User Registration & Login
-
-✅ JWT Authentication & Authorization
-
-✅ Resume PDF Upload
-
-✅ PDF Text Extraction using Apache PDFBox
-
-✅ AI-Powered Resume Analysis with Gemini AI
-
-✅ Resume Match Score Calculation
-
-✅ Skills Found & Missing Skills Detection
-
-✅ AI-Generated Interview Questions
-
-✅ Analysis History Tracking
-
-✅ PDF Report Generation
-
-✅ Global Exception Handling
-
-✅ Swagger API Documentation
-
-✅ Dockerized Deployment
+- ✅ User Registration & Login
+- ✅ JWT Authentication & Authorization
+- ✅ Secure Protected APIs
+- ✅ Resume PDF Upload
+- ✅ PDF Text Extraction using Apache PDFBox
+- ✅ AI Resume Analysis using Google Gemini AI
+- ✅ Resume Match Score Calculation
+- ✅ Skills Found Detection
+- ✅ Missing Skills Detection
+- ✅ AI Generated Interview Questions
+- ✅ Analysis History
+- ✅ PDF Report Download
+- ✅ Dashboard Statistics
+- ✅ Dark Mode Support
+- ✅ Toast Notifications
+- ✅ Upload Loading Indicator
+- ✅ Global Exception Handling
+- ✅ Swagger API Documentation
+- ✅ Dockerized Backend Deployment
 
 ---
 
-## 🛠️ Tech Stack
+# 🛠️ Tech Stack
 
-| Category       | Technologies               |
-| -------------- | -------------------------- |
-| Backend        | Java 21, Spring Boot 3     |
-| Security       | Spring Security, JWT       |
-| Database       | PostgreSQL                 |
-| ORM            | Spring Data JPA, Hibernate |
-| AI Integration | Google Gemini API          |
-| Documentation  | Swagger / OpenAPI          |
-| Deployment     | Docker, Render             |
-| Build Tool     | Maven                      |
+| Category | Technologies |
+|----------|--------------|
+| Frontend | React.js, Vite, Bootstrap 5 |
+| Backend | Java 21, Spring Boot 3 |
+| Security | Spring Security, JWT |
+| Database | PostgreSQL |
+| ORM | Spring Data JPA, Hibernate |
+| AI | Google Gemini API |
+| PDF Processing | Apache PDFBox |
+| Documentation | Swagger / OpenAPI |
+| Deployment | Render, Vercel |
+| Build Tool | Maven |
 
 ---
 
-## 🏗️ System Workflow
+# 🏗️ System Architecture
 
-```text
+```
+                React Frontend (Vercel)
+                        │
+                        ▼
+              Spring Boot REST APIs
+                        │
+                        ▼
+           Spring Security + JWT Auth
+                        │
+                        ▼
+                  PostgreSQL Database
+                        │
+                        ▼
+              Google Gemini AI API
+                        │
+                        ▼
+              Resume Analysis Result
+```
+
+---
+
+# 🔄 Application Workflow
+
+```
 User Login/Register
         │
         ▼
  Upload Resume PDF
         │
         ▼
- Extract Text (PDFBox)
+Extract Resume Text
+ (Apache PDFBox)
         │
         ▼
- Send Resume + Job Description
+Enter Job Description
         │
         ▼
-      Gemini AI
+ Google Gemini AI
         │
         ▼
  Resume Analysis
- ├─ Match Score
- ├─ Skills Found
- ├─ Missing Skills
- └─ Interview Questions
+ ├── Match Score
+ ├── Skills Found
+ ├── Missing Skills
+ └── Interview Questions
         │
         ▼
- Store Results in PostgreSQL
+ Store Analysis
+(PostgreSQL Database)
         │
         ▼
  History & PDF Reports
 ```
 
-## 📌 API Endpoints
+---
 
-### 🔐 Authentication
+# 📌 REST API Endpoints
 
-| Method | Endpoint             |
-| ------ | -------------------- |
-| POST   | `/api/auth/register` |
-| POST   | `/api/auth/login`    |
+## 🔐 Authentication
 
-### 📄 Resume Management
-
-| Method | Endpoint             |
-| ------ | -------------------- |
-| POST   | `/api/resume/upload` |
-
-### 🤖 AI Analysis
-
-| Method | Endpoint                           |
-| ------ | ---------------------------------- |
-| POST   | `/api/analyze/analyze`             |
-| GET    | `/api/analysis/history/{resumeId}` |
-
-### 📊 Reports
-
-| Method | Endpoint                            |
-| ------ | ----------------------------------- |
-| GET    | `/api/analysis/report/{analysisId}` |
+| Method | Endpoint |
+|--------|----------|
+| POST | `/api/auth/register` |
+| POST | `/api/auth/login` |
 
 ---
 
-## 🗄️ Database Entities
+## 📄 Resume
+
+| Method | Endpoint |
+|--------|----------|
+| POST | `/api/resume/upload` |
+
+---
+
+## 🤖 AI Analysis
+
+| Method | Endpoint |
+|--------|----------|
+| POST | `/api/ai/analyze` |
+
+---
+
+## 📊 Analysis
+
+| Method | Endpoint |
+|--------|----------|
+| GET | `/api/analysis/history/{resumeId}` |
+| GET | `/api/analysis/report/{analysisId}` |
+
+---
+
+# 🗄️ Database
 
 The application stores:
 
-* 👤 Users
-* 📄 Uploaded Resumes
-* 📊 Analysis Results
-* 🎯 Match Scores
-* 💡 Skills Analysis
-* 🎤 Interview Questions
-* 📜 Analysis History
+- 👤 Users
+- 📄 Uploaded Resumes
+- 📊 AI Analysis Results
+- 🎯 Match Scores
+- ✅ Skills Found
+- ❌ Missing Skills
+- 💬 Interview Questions
+- 📜 Analysis History
 
 ---
 
-## 🚀 Deployment
+# 📷 Screenshots
 
-**Platform:** Render
+> Add screenshots inside a **screenshots/** folder.
 
-**API Documentation:**
+Example:
 
-https://resume-ai-assistent.onrender.com/swagger-ui/index.html
-
----
-
-## 🔮 Future Enhancements
-
-* Refresh Token Authentication
-* Role-Based Access Control (RBAC)
-* React Frontend
-* Unit & Integration Testing
-* CI/CD Pipeline
-* Email Notifications
-* Resume Version Comparison
-* Multi-Role Support
+```
+screenshots/
+│
+├── login.png
+├── register.png
+├── dashboard.png
+├── upload.png
+├── analyze.png
+├── result.png
+├── history.png
+├── darkmode.png
+```
 
 ---
 
-## 👩‍💻 Author
+# 🚀 Run Locally
 
-### Nidhi Rahangdale
+### Clone Repository
 
-**Java Backend Developer**
+```bash
+git clone https://github.com/nidhiRahan/Resume-AI-Assistent.git
+```
+
+### Backend
+
+```bash
+cd backend
+mvn clean install
+mvn spring-boot:run
+```
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+---
+
+# 🚀 Deployment
+
+### Frontend
+
+- Vercel
+
+### Backend
+
+- Render
+
+### Database
+
+- PostgreSQL
+
+---
+
+# 🔮 Future Enhancements
+
+- Refresh Token Authentication
+- Role-Based Access Control (RBAC)
+- Email Notifications
+- Resume Version Comparison
+- ATS Score Improvement Suggestions
+- Unit Testing
+- Integration Testing
+- CI/CD Pipeline
+- Admin Dashboard
+
+---
+
+# 👩‍💻 Author
+
+**Nidhi Rahangdale**
+
+Java Full Stack Developer
 
 ### Skills
 
-Java • Spring Boot • Hibernate • PostgreSQL • REST APIs • JWT • Docker • Maven • Git
+- Java
+- Spring Boot
+- React.js
+- Spring Security
+- JWT
+- Hibernate
+- PostgreSQL
+- Google Gemini AI
+- REST APIs
+- Maven
+- Docker
+- Git
+- Render
+- Vercel
 
 ---
 
-⭐ If you found this project helpful, consider giving it a star on GitHub.
+⭐ If you found this project helpful, consider giving it a **Star** on GitHub.
